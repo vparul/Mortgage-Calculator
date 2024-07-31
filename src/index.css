@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'PlusJakartaSans';
+    src: url('./assets/fonts/PlusJakartaSans-VariableFont.ttf') format('truetype');
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'PlusJakartaSansItalic';
+    src: url('./assets/fonts/PlusJakartaSans-Italic.ttf') format('truetype');
+  }
+
+.label {
+    @apply text-base font-medium text-slate-700;
+}
+
+.input-container {
+    @apply border-[1px] cursor-pointer flex relative border-slate-500 rounded items-center my-2;
+}
