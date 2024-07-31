@@ -9,7 +9,7 @@ function App() {
     interestRate: "",
     mortgageType: "",
   });
-  const [computedResult, setComputedResult] = useState()
+  const [computedResult, setComputedResult] = useState(null)
 
   return (
     <div className="bg-slate-100 h-screen w-screen">
