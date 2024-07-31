@@ -7,10 +7,11 @@ const Result = ({ computedResult, formValues }) => {
   const isMortgageTypeRepayment = () =>
     formValues.mortgageType === MORTGAGE_TYPE.REPAYMENT;
 
-  const getFormattedAmount = (amount) => (amount ? "£" + formatLocaleString(amount) : "-")
+  const getFormattedAmount = (amount) =>
+    amount ? "£" + formatLocaleString(amount) : "-";
 
   return (
-    <div className="bg-slate-900 p-8 flex-1 rounded-bl-[3.5rem] rounded-3xl rounded-tl-none">
+    <div className="bg-slate-900 p-8 flex-1 md:rounded-bl-[3.5rem] md:rounded-3xl md:rounded-tl-none">
       {computedResult && hasAllRequiredValues(formValues) ? (
         <div>
           <h1 className="text-white text-xl font-medium">Your results</h1>

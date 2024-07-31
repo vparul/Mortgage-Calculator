@@ -27,14 +27,13 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
     e?.preventDefault();
     if (!hasAllRequiredValues(formValues)) {
       Object.keys(formValues)?.forEach((key) => {
-        if(!formValues[key]) {
+        if (!formValues[key]) {
           setErrors((prevValues) => ({
             ...prevValues,
             [key]: "This field is required",
-          }))
+          }));
         }
-      }
-      );
+      });
     } else {
       setErrors({});
       const { mortgageType } = formValues;
@@ -89,8 +88,8 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
   };
 
   return (
-    <div className="px-8 py-8 w-1/2">
-      <div className="pb-8 font-sans flex items-center justify-between">
+    <div className="w-auto px-8 px-8 py-8 md:w-1/2">
+      <div className="pb-8 font-sans flex flex-col md:flex-row md:items-center items-start  justify-between">
         <h1 className="text-xl text-slate-900 font-bold">
           Mortgage Calculator
         </h1>
@@ -114,30 +113,28 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
           setValue={setFormValues}
           setErrors={setErrors}
         />
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col  md:flex-row md:items-center justify-between items-start">
           <NumberInput
             name="mortgageTerm"
             label="Mortgage Term"
             icon="years"
             placement="right"
-            className="w-48"
+            className="w-full md:w-48"
             errors={errors}
             setValue={setFormValues}
             value={formValues?.["mortgageTerm"]}
-          setErrors={setErrors}
-
+            setErrors={setErrors}
           />
           <NumberInput
             name="interestRate"
             label="Interest Rate"
             icon="%"
             placement="right"
-            className="w-48"
+            className="w-full md:w-48"
             errors={errors}
             setValue={setFormValues}
             value={formValues?.["interestRate"]}
-          setErrors={setErrors}
-
+            setErrors={setErrors}
           />
         </div>
         <RadioButton
@@ -148,14 +145,13 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
           setValue={setFormValues}
           value={formValues?.["mortgageType"]}
           setErrors={setErrors}
-
         />
         <button
-          className="bg-lime-500 py-3 px-9 rounded-full mt-7 transition-opacity hover:opacity-70"
+          className="w-full items-center bg-lime-500 py-3 px-9 rounded-full mt-7 transition-opacity hover:opacity-70"
           type="submit"
           name="calculate"
         >
-          <div className="flex text-lg font-bold items-center text-slate-900">
+          <div className="flex text-lg font-bold items-center justify-center text-slate-900">
             <img
               src={CalculatorIcon}
               alt="calculator"
