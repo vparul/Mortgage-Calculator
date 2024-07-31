@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const RadioButton = ({ label, name, options, value }) => {
+const RadioButton = ({ label, name, options, value, errors }) => {
     const [checkedValue, setCheckedValue] = useState(value);
 
   return (
@@ -32,6 +32,9 @@ const RadioButton = ({ label, name, options, value }) => {
           </label>
         </div>
       ))}
+      {errors?.[name] && (
+        <div className="error">{errors?.[name]}</div>
+      )}
     </>
   );
 };
