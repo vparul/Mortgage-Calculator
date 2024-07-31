@@ -1,12 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const RadioButton = ({ label, name, options, value, errors, setValue }) => {
+const RadioButton = ({
+  label,
+  name,
+  options,
+  value,
+  errors,
+  setValue,
+  setErrors,
+}) => {
   const [checkedValue, setCheckedValue] = useState(value);
 
   const onOptionChange = ({ target }) => {
-    setValue(target.value);
-    setCheckedValue(target.value);
+    setErrors((prevValue) => ({
+      ...prevValue,
+      [name]: "",
+    }));
+    const value = target?.value;
+    setValue((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+    setCheckedValue(value);
   };
+
+  useEffect(() => {
+    setCheckedValue(value);
+  }, [value]);
 
   return (
     <>
@@ -17,6 +37,7 @@ const RadioButton = ({ label, name, options, value, errors, setValue }) => {
         <div
           key={value}
           className="input-container py-3 px-4 hover:border-lime-500 focus-within:bg-lime-100 focus-within:border-lime-500"
+          onClick={onOptionChange}
         >
           <input
             type="radio"
@@ -24,7 +45,6 @@ const RadioButton = ({ label, name, options, value, errors, setValue }) => {
             name={name}
             value={value}
             className="w-4 h-4 sr-only peer focus:text-lime-500"
-            onChange={onOptionChange}
           />
           <div className="w-5 h-5 flex items-center justify-center border border-gray-300 rounded-full">
             <div

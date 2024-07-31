@@ -2,13 +2,11 @@ import React, { useState } from "react";
 import NumberInput from "../NumberInput";
 import RadioButton from "../RadioButton/RadioButton";
 import CalculatorIcon from "../../assets/icons/calculator.svg";
+import { MORTGAGE_TYPE } from "../../constants/constants";
+import { hasAllRequiredValues } from "../../utils/common";
 
 const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
-  //result screen change
-  // change background
-  // clear all button functionality
-  // Radio button not working properly
-  // Responsiveness
+  const { INTEREST_ONLY, REPAYMENT } = MORTGAGE_TYPE;
 
   const [errors, setErrors] = useState({});
 
@@ -16,27 +14,31 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
     {
       id: 1,
       name: "Repayment",
-      value: "repayment",
+      value: REPAYMENT,
     },
     {
       id: 2,
       name: "Interest Only",
-      value: "interest_only",
+      value: INTEREST_ONLY,
     },
   ];
 
   const onFormSubmit = (e) => {
     e?.preventDefault();
-    if (!Object.values(formValues)?.some((value) => value)) {
-      Object.keys(formValues)?.forEach((key) =>
-        setErrors((prevValues) => ({
-          ...prevValues,
-          [key]: "This field is required",
-        }))
+    if (!hasAllRequiredValues(formValues)) {
+      Object.keys(formValues)?.forEach((key) => {
+        if(!formValues[key]) {
+          setErrors((prevValues) => ({
+            ...prevValues,
+            [key]: "This field is required",
+          }))
+        }
+      }
       );
     } else {
+      setErrors({});
       const { mortgageType } = formValues;
-      if (mortgageType === "interest_only") {
+      if (mortgageType === INTEREST_ONLY) {
         setComputedResult(calculateInterestOnlyMortgage());
       } else {
         setComputedResult(calculateMonthlyPayment());
@@ -72,8 +74,18 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
     return {
       monthlyInterest,
       totalInterest,
-      totalRepayment: mortgageAmount + totalInterest,
+      totalRepayment: Number(mortgageAmount) + Number(totalInterest),
     };
+  };
+
+  const onClearAll = () => {
+    setFormValues({
+      mortgageAmount: "",
+      mortgageType: "",
+      mortgageTerm: "",
+      interestRate: "",
+    });
+    setComputedResult(null);
   };
 
   return (
@@ -85,6 +97,7 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
         <button
           type="button"
           className="text-slate-700 border-b-2 hover:text-slate-900 hover:border-slate-900"
+          onClick={onClearAll}
         >
           Clear All
         </button>
@@ -97,7 +110,9 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
           icon="£"
           placement="left"
           errors={errors}
+          value={formValues?.["mortgageAmount"]}
           setValue={setFormValues}
+          setErrors={setErrors}
         />
         <div className="flex justify-between items-center">
           <NumberInput
@@ -108,6 +123,9 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
             className="w-48"
             errors={errors}
             setValue={setFormValues}
+            value={formValues?.["mortgageTerm"]}
+          setErrors={setErrors}
+
           />
           <NumberInput
             name="interestRate"
@@ -117,6 +135,9 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
             className="w-48"
             errors={errors}
             setValue={setFormValues}
+            value={formValues?.["interestRate"]}
+          setErrors={setErrors}
+
           />
         </div>
         <RadioButton
@@ -125,6 +146,9 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
           options={mortgageTypeList}
           errors={errors}
           setValue={setFormValues}
+          value={formValues?.["mortgageType"]}
+          setErrors={setErrors}
+
         />
         <button
           className="bg-lime-500 py-3 px-9 rounded-full mt-7 transition-opacity hover:opacity-70"
