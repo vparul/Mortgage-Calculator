@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 
-const RadioButton = ({ label, name, options, value, errors }) => {
-    const [checkedValue, setCheckedValue] = useState(value);
+const RadioButton = ({ label, name, options, value, errors, setValue }) => {
+  const [checkedValue, setCheckedValue] = useState(value);
+
+  const onOptionChange = ({ target }) => {
+    setValue(target.value);
+    setCheckedValue(target.value);
+  };
 
   return (
     <>
@@ -19,10 +24,14 @@ const RadioButton = ({ label, name, options, value, errors }) => {
             name={name}
             value={value}
             className="w-4 h-4 sr-only peer focus:text-lime-500"
-            onChange={({ target }) => setCheckedValue(target.value)}
+            onChange={onOptionChange}
           />
           <div className="w-5 h-5 flex items-center justify-center border border-gray-300 rounded-full">
-          <div className={`w-3 h-3 rounded-full ${checkedValue === value ? 'bg-lime-500' : ' bg-transparent'}`}></div>
+            <div
+              className={`w-3 h-3 rounded-full ${
+                checkedValue === value ? "bg-lime-500" : " bg-transparent"
+              }`}
+            ></div>
           </div>
           <label
             htmlFor={id}
@@ -32,9 +41,7 @@ const RadioButton = ({ label, name, options, value, errors }) => {
           </label>
         </div>
       ))}
-      {errors?.[name] && (
-        <div className="error">{errors?.[name]}</div>
-      )}
+      {errors?.[name] && <div className="error">{errors?.[name]}</div>}
     </>
   );
 };

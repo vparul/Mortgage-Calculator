@@ -20,6 +20,7 @@ module.exports = {
           100: "hsl(60,70.6%,93.3%)",
           500:"hsl(61, 70%, 52%)"},
         red: "hsl(4, 69%, 50%)",
+        dark:"hsl(201.2,53.1%,12.5%)",
         white: "hsl(0, 0%, 100%)",
         ...defaultTheme.colors,
       },

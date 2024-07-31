@@ -9,13 +9,14 @@ function App() {
     interestRate: "",
     mortgageType: "",
   });
+  const [computedResult, setComputedResult] = useState()
 
   return (
     <div className="bg-slate-100 h-screen w-screen">
       <div className="flex h-full items-center justify-center">
         <div className="flex bg-white m-12 rounded-3xl w-3/5">
-          <Calculator formValues={formValues} />
-          <Result formValues={formValues} />
+          <Calculator formValues={formValues} setFormValues={setFormValues} setComputedResult={setComputedResult} />
+          <Result formValues={formValues} computedResult={computedResult} />
         </div>
       </div>
     </div>
