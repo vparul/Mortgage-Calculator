@@ -21,6 +21,7 @@ const RadioButton = ({ label, name, options, value }) => {
             className="w-4 h-4 sr-only peer focus:text-lime-500"
             onChange={({ target }) => setCheckedValue(target.value)}
           />
+        
           <div className="w-5 h-5 flex items-center justify-center border border-gray-300 rounded-full">
           <div className={`w-3 h-3 rounded-full ${checkedValue === value ? 'bg-lime-500' : ' bg-transparent'}`}></div>
           </div>
