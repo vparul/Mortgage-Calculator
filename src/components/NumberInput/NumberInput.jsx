@@ -94,7 +94,7 @@ const NumberInput = ({
           </div>
         )}
         <input
-          className="sibling my-2 ml-2 mr-2 outline-0 rounded w-full py-1 cursor-pointer"
+          className="sibling my-2 ml-2 mr-2 outline-0 rounded w-full py-1 cursor-pointer font-bold"
           style={{
             paddingLeft: placement === "left" ? `${cursorPlacement + 4}px` : undefined,
             paddingRight: placement === "right" ? `${cursorPlacement + 4}px` : undefined,
