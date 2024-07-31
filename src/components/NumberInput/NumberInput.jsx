@@ -4,9 +4,9 @@ const NumberInput = ({ label, name, placement, icon, className }) => {
     return (
         <div className={`mb-5 ${className}`}>
         <label className='label' htmlFor={name}>{label}</label>
-        <div className='group input-container focus-within:border-lime hover:border-slate-900 hover:focus-within:border-lime'>
+        <div className='group input-container focus-within:border-lime-500 hover:border-slate-900 hover:focus-within:border-lime-500'>
             {icon ? (
-                <div className={`px-4 text-lg absolute bg-slate-100 h-full text-slate-700 font-bold flex items-center group-focus-within:bg-lime ${placement === 'left' ? 'left-0 rounded-tl rounded-bl' : 'right-0 rounded-tr rounded-br' }`}>
+                <div className={`px-4 text-lg absolute bg-slate-100 h-full text-slate-700 font-bold flex items-center group-focus-within:bg-lime-500 ${placement === 'left' ? 'left-0 rounded-tl rounded-bl' : 'right-0 rounded-tr rounded-br' }`}>
                 {icon}
                 </div>
             ) : null}

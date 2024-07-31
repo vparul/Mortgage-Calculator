@@ -29,7 +29,7 @@ const Calculator = () => {
        <NumberInput name="interestRate" label="Interest Rate" icon="%" placement="right" className="w-48" />
        </div>
         <RadioButton name="mortgageType" label="Mortgage Type" options={mortgageTypeList} />
-        <button className='bg-lime py-3 px-9 rounded-full mt-7 transition-opacity hover:opacity-70' type="submit" name="calculate">
+        <button className='bg-lime-500 py-3 px-9 rounded-full mt-7 transition-opacity hover:opacity-70' type="submit" name="calculate">
           <div className="flex text-lg font-bold items-center text-slate-900">
           <img src={CalculatorIcon} alt='calculator' className='pr-2 w-8 h-8' />
           Calculate Repayments
