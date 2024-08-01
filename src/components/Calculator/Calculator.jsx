@@ -147,7 +147,7 @@ const Calculator = ({ formValues, setFormValues, setComputedResult }) => {
           setErrors={setErrors}
         />
         <button
-          className="w-full items-center bg-lime-500 py-3 px-9 rounded-full mt-7 transition-opacity hover:opacity-70"
+          className="w-full items-center bg-lime-500 py-3 px-9 rounded-full mt-7 transition-opacity hover:opacity-70 md:w-4/5"
           type="submit"
           name="calculate"
         >
